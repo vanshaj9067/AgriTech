@@ -1,0 +1,59 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("imageUpload");
+    const previewImage = document.getElementById("previewImage");
+    const detectButton = document.getElementById("detectButton");
+    const resultText = document.getElementById("resultText");
+
+    // Voice-guided instructions
+    function speakMessage(message) {
+        const speech = new SpeechSynthesisUtterance(message);
+        speech.lang = "en-US";  // Change to regional language if needed
+        window.speechSynthesis.speak(speech);
+    }
+
+    // Show image preview
+    fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Detect pest when button is clicked
+    detectButton.addEventListener("click", function () {
+        if (fileInput.files.length === 0) {
+            resultText.textContent = "Please upload an image first!";
+            speakMessage("Please upload an image first!");
+            return;
+        }
+
+        // Simulating AI detection (Replace with actual AI model API)
+        setTimeout(() => {
+            const randomPests = ["Aphids", "Fungal Infection", "Healthy", "Leaf Rust"];
+            const detectedPest = randomPests[Math.floor(Math.random() * randomPests.length)];
+
+            resultText.textContent = `Detected: ${detectedPest}`;
+            speakMessage(`Detected: ${detectedPest}`);
+
+            // Display recommendations
+            let advice = "Consult an expert.";
+            if (detectedPest === "Aphids") {
+                advice = "नीम के तेल से बने स्प्रे का इस्तेमाल करके पौधों पर एफ़िड्स को हटाया जा सकता है.";
+            } else if (detectedPest === "Fungal Infection") {
+                advice = "फफूंदनाशक लगाएं और संक्रमित पत्तियों को हटा दें.";
+            } else if (detectedPest === "Leaf Rust") {
+                advice = "Use a sulfur-based fungicide.";
+            } else {
+                advice = "Your crop looks healthy!";
+            }
+
+            document.getElementById("adviceText").textContent = advice;
+            speakMessage(advice);
+        }, 2000);
+    });
+});
