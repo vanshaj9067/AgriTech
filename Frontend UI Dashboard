@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agritech Dashboard</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-xl">
+        <h1 class="text-2xl font-bold text-center text-green-700 mb-4">
+            🌾 <span id="dashboard-title">Agritech Dashboard</span>
+        </h1>
+
+        <!-- Language Selector -->
+        <div class="text-center mb-4">
+            <label for="language-select" class="font-semibold">🌍 Choose Language:</label>
+            <select id="language-select" class="border p-2 rounded">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="ta">தமிழ் (Tamil)</option>
+                <option value="bn">বাংলা (Bengali)</option>
+                <option value="mr">मराठी (Marathi)</option>
+            </select>
+        </div>
+
+        <!-- Crop Price Search -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold text-green-800" id="crop-price-title">📊 Check Crop Price</h2>
+            <input type="text" id="crop-name" placeholder="Enter Crop Name" class="border p-2 rounded w-full mb-2">
+            <input type="text" id="crop-location" placeholder="Enter Location" class="border p-2 rounded w-full mb-2">
+            <button onclick="fetchCropPrice()" id="crop-btn" class="w-full bg-green-600 text-white py-2 rounded">
+                Get Price
+            </button>
+            <p id="crop-price-result" class="text-center text-gray-700 mt-2"></p>
+        </section>
+
+        <!-- Weather Forecast -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold text-blue-800" id="weather-title">🌦️ Weather Forecast</h2>
+            <input type="text" id="latitude" placeholder="Enter Latitude" class="border p-2 rounded w-full mb-2">
+            <input type="text" id="longitude" placeholder="Enter Longitude" class="border p-2 rounded w-full mb-2">
+            <button onclick="fetchWeather()" id="weather-btn" class="w-full bg-blue-600 text-white py-2 rounded">
+                Get Weather
+            </button>
+            <p id="weather-result" class="text-center text-gray-700 mt-2"></p>
+        </section>
+
+      <section id="pestDetection" class="bg-white p-6 rounded-lg shadow-md mt-6">
+    <h2 class="text-xl font-bold mb-4">🌱 Pest Detection</h2>
+    
+    <!-- Upload Image -->
+    <input type="file" id="imageUpload" accept="image/*" class="border p-2 rounded-lg mb-4">
+    
+    <!-- Image Preview -->
+    <img id="previewImage" src="" alt="Uploaded Image" class="mt-2 hidden max-w-xs">
+    
+    <!-- Detect Button -->
+    <button id="detectButton" class="bg-green-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-green-700">
+        Detect Pest
+    </button>
+    
+    <!-- Result Output -->
+    <p id="resultText" class="mt-4 font-bold"></p>
+    <p id="adviceText" class="text-sm text-gray-600"></p>
+</section>
+
+
+        <!-- Voice Recognition -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold text-purple-800" id="voice-title">🎤 Voice Crop Diagnosis</h2>
+            <button id="record-button" class="w-full bg-purple-600 text-white py-2 rounded">
+                Start Recording
+            </button>
+            <p id="voice-result" class="text-center text-gray-700 mt-2"></p>
+        </section>
+
+        <!-- Educational Resources -->
+        <section class="text-center mb-6">
+            <h2 class="text-lg font-semibold text-green-800" id="learn-title">📚 Learn About Crops</h2>
+            <a href="https://education.nationalgeographic.org/resource/crops/" target="_blank">
+                <img src="https://education.nationalgeographic.org/resource/crops/" 
+                     alt="Crops Information" class="w-full rounded-lg shadow-md mt-2">
+            </a>
+            <p class="text-sm text-gray-600 mt-2" id="learn-text">Click the image to learn more about crops.</p>
+        </section>
+    </div>
+<script src="script.js"></script>
+
+</body>
+</html>
